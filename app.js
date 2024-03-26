@@ -2,11 +2,10 @@ import express from "express";
 import morgan from "morgan";
 import cors from "cors";
 import mongoose from "mongoose";
+import "dotenv/config.js";
 
 import moviesRouter from "./routes/moviesRouter.js";
 import contactsRouter from "./routes/contactsRouter.js";
-
-// import { DB_HOST } from "./config.js";
 
 const app = express();
 
@@ -26,7 +25,7 @@ app.use((err, req, res, next) => {
   res.status(status).json({ message });
 });
 
-// console.log(process.env.DB_HOST);
+console.log(process.env.DB_HOST);
 
 mongoose
   .connect(process.env.DB_HOST)
@@ -36,8 +35,8 @@ mongoose
     });
   })
   .catch((error) => {
-    process.exit(1);
     console.log(error.message);
+    process.exit(1);
   });
 
 // ZrmN9K4Q9qG9GoCZ
