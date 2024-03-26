@@ -6,6 +6,8 @@ import mongoose from "mongoose";
 import moviesRouter from "./routes/moviesRouter.js";
 import contactsRouter from "./routes/contactsRouter.js";
 
+import { DB_HOST } from "./config.js";
+
 const app = express();
 
 app.use(morgan("tiny"));
@@ -23,9 +25,6 @@ app.use((err, req, res, next) => {
   const { status = 500, message = "Server error" } = err;
   res.status(status).json({ message });
 });
-
-const DB_HOST =
-  "mongodb+srv://Bogdan:ZrmN9K4Q9qG9GoCZ@cluster0.6kcpqup.mongodb.net/my-movies?retryWrites=true&w=majority&appName=Cluster0";
 
 mongoose
   .connect(DB_HOST)
