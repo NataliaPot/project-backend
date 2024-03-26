@@ -6,7 +6,7 @@ import mongoose from "mongoose";
 import moviesRouter from "./routes/moviesRouter.js";
 import contactsRouter from "./routes/contactsRouter.js";
 
-import { DB_HOST } from "./config.js";
+// import { DB_HOST } from "./config.js";
 
 const app = express();
 
@@ -26,18 +26,18 @@ app.use((err, req, res, next) => {
   res.status(status).json({ message });
 });
 
-console.log(process.env);
+// console.log(process.env.DB_HOST);
 
-// mongoose
-//   .connect(DB_HOST)
-//   .then(() => {
-//     app.listen(3000, () => {
-//       console.log("Server is running. Use our API on port: 3000");
-//     });
-//   })
-//   .catch((error) => {
-//     process.exit(1);
-//     console.log(error.message);
-//   });
+mongoose
+  .connect(process.env.DB_HOST)
+  .then(() => {
+    app.listen(3000, () => {
+      console.log("Server is running. Use our API on port: 3000");
+    });
+  })
+  .catch((error) => {
+    process.exit(1);
+    console.log(error.message);
+  });
 
 // ZrmN9K4Q9qG9GoCZ
